@@ -1,3 +1,12 @@
 Racket Machine Learning
 
 A collection of things I found useful for doing Machine Learning problem sets.
+
+I wouldn't rely on anything that doesn't have a corresponding file in the tests/
+folder. It's all in development.
+
+The implementation of the Dirichlet distribution owes inspiration to Luc
+Devroye's book, "Non-Uniform Random Variate Generation", which is freely
+available online [1].
+
+[1] http://luc.devroye.org/rnbookindex.html
