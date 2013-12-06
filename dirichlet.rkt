@@ -22,7 +22,7 @@
                       ([alpha alphas]
                        [x xs])
              (* result (fl (expt (min 1 (max 0 x)) (sub1 alpha)))))
-           (multi-beta alphas))))
+           (multivariate-beta alphas))))
 
   (: dirichlet-sampler : (case-> (-> RealVector)
                                  (Integer -> [Listof RealVector])))

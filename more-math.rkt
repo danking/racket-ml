@@ -2,10 +2,10 @@
 
 (require math
          )
-(provide multi-beta
+(provide multivariate-beta
          )
 
 (: multi-beta : [Vectorof Real] -> Real)
-(define (multi-beta vec)
+(define (multivariate-beta vec)
   (/ (for/product: : Real ([v vec]) (gamma v))
      (gamma (for/sum: : Real ([v vec]) v))))
