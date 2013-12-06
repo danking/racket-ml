@@ -9,7 +9,11 @@
                [in-value (All (X) (X -> [Sequenceof X]))]
                )
 
-(provide (all-defined-out)
+(provide (struct-out histogram)
+         histogram->function
+         hist-gen&render
+         histogram->renderer
+         generate-histogram
          )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
