@@ -9,20 +9,32 @@
 
 (define-type RealVector [Vectorof Real])
 
-(: dirichlet-dist : (RealVector -> (distribution RealVector RealVector)))
+(: dirichlet-dist : (RealVector
+                     ->
+                     (distribution RealVector RealVector)))
 (define (dirichlet-dist alphas)
   (: dirichlet-pdf : (case-> (RealVector -> Flonum)
                              (RealVector (U Any False) -> Flonum)))
   (define (dirichlet-pdf xs [log? #f])
-    ;; TODO Actually have smart log behavior
-    (if log?
-        (error 'dirichlet-pdf "log behavior unimplemented")
-        (/ (for/fold: : Flonum
-                      ([result : Flonum #i1])
-                      ([alpha alphas]
-                       [x xs])
-             (* result (fl (expt (min 1 (max 0 x)) (sub1 alpha)))))
-           (multivariate-beta alphas))))
+    (if (for/or: : Boolean
+                 ([x : Real (in-vector xs)])
+          (or (< x 0) (> x 1)))
+        (error 'dirichlet-pdf
+               (string-append "All elements of the vector must be between 0 "
+                              "and 1, inclusive, given ~a.")
+               xs)
+        (if log?
+            (- (for/fold: : Flonum
+                          ([result : Flonum #i0])
+                          ([alpha alphas]
+                           [x xs])
+                 (+ result (fl (* (sub1 alpha) (log (max 0 x)))))))
+            (/ (for/fold: : Flonum
+                          ([result : Flonum #i1])
+                          ([alpha alphas]
+                           [x xs])
+                 (* result (fl (expt (max 0 x) (sub1 alpha)))))
+               (multivariate-beta alphas)))))
 
   (: dirichlet-sampler : (case-> (-> RealVector)
                                  (Integer -> [Listof RealVector])))
