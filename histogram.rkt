@@ -100,8 +100,8 @@
                             number-of-bins
                             #:weights [weights sequence-of-ones]
                             #:normalize? [normalize? #t])
-  (define left (exact-ceiling (apply max (sequence->list data))))
-  (define right (exact-floor (apply min (sequence->list data))))
+  (define left (exact-ceiling (apply min (sequence->list data))))
+  (define right (exact-floor (apply max (sequence->list data))))
   (define total-width (max 0 (- right left)))
   (define bin-width (max 0 (/ total-width number-of-bins)))
   (define which-bin
