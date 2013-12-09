@@ -77,7 +77,7 @@
              0)                         ; appease the type checker
         (error 'histogram-which-bin
                "Value ~a is not within range [~a,~a]."
-               value left right left right))))
+               value left right))))
 
 (: normalize-vector ((Vectorof Real) Real -> (Vectorof Real)))
 (define (normalize-vector v bin-width)
