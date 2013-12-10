@@ -5,8 +5,10 @@
          (only-in racket/snip image-snip%)
          )
 
+
 (require/typed racket
                [in-value (All (X) (X -> [Sequenceof X]))]
+               [in-cycle (All (X) ([Sequenceof X] * -> [Sequenceof X]))]
                )
 
 (provide (struct-out histogram)
