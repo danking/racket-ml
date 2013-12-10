@@ -88,7 +88,7 @@
     (/ value sum)))
 
 (: sequence-of-ones : [Sequenceof Natural])
-(define sequence-of-ones (in-value 1))
+(define sequence-of-ones (in-cycle (in-value 1)))
 
 (: generate-histogram : ([Sequenceof Real]
                          Natural
