@@ -75,7 +75,8 @@
 (define (generate-which-bin left right number-of-bins bin-width)
   (lambda: ([value : Real])
     (if (and (>= value left) (<= value right))
-        (max (exact-floor (/ (- value left) bin-width))
+        (max (min (exact-floor (/ (- value left) bin-width))
+                  (sub1 number-of-bins)) ; catch the right end-point
              0)                         ; appease the type checker
         (error 'histogram-which-bin
                "Value ~a is not within range [~a,~a]."
